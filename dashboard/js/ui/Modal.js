@@ -8,9 +8,10 @@ export class Modal {
     barBtn;
     generateBtn;
     widgetsQueue;
+    dashboard;
 
-    constructor(queue) {
-        this.widgetsQueue = queue;
+    constructor(dashboard) {
+        
         this.widgetsQueue = [];
         this.settings = document.createElement('div');
         this.settings.className = 'modal-overlay';
@@ -42,6 +43,7 @@ export class Modal {
         this.pieBtn = document.getElementById('pie-add');
         this.linearBtn = document.getElementById('linear-add');
         this.generateBtn = document.getElementById('generate');
+        this.dashboard = dashboard;
         this.setupEventListeners();
     }
 
@@ -76,15 +78,18 @@ export class Modal {
         this.generateBtn.addEventListener('click',() =>{
             const charts = document.querySelectorAll('.chart-container');
             charts.forEach(element =>{
+                
                 element.remove();
             });
             console.log(...this.widgetsQueue);
-            new Dashboard(this.widgetsQueue);
-            
+            this.dashboard.initBoard(this.widgetsQueue);
+                        
             document.querySelector('.modal-overlay').remove();
         });
 
     }
+
+    
 
 
 

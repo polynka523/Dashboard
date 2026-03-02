@@ -1,20 +1,50 @@
-import { ChartWidget } from "./widgets/ChartWidget";
+import { Chart } from "chart.js";
+import { Dashboard } from "./core/Dashboard";
 import { Modal } from "./ui/Modal";
-// const chart1 = createLineChart(['Янв', 'Фев', 'Мар'], [10, 20, 15]);
-// document.getElementById('cnt').appendChild(chart1);
-const queue = [];
-// document.getElementById('add-btn').addEventListener('click', () => {
-//     const newChart = new ChartWidget('pie');
-//     newChart.createChart(['Янв', 'Фев', 'Мар'], [10, 20, 15],'Какие-то данные');
-//     document.getElementById('cnt').appendChild(newChart.container);
-// });
-// document.getElementById('remove-btn').addEventListener('click', () => {
-//     const charts = document.querySelectorAll('.chart-container');
-//     if (charts.length > 0) {
-//         charts[charts.length - 1].remove();
-//     }
-// });
-document.getElementById('create-board').addEventListener('click',() => {
-    const modal = new Modal(queue);
-});
+
+
+
+let dashboard = new Dashboard();
+let data = null;
+const savedDashboards = localStorage;
+
+export function init() {
+    document.getElementById('create-board').addEventListener('click',() => {
+        const modal = new Modal(dashboard);
+        console.log(modal);
+    });
+
+    document.getElementById('take-data').addEventListener('click', async () => {
+        const response = await fetch("./test/data.json");
+        
+        data = await response.json();
+        dashboard.data = data;
+        console.log(data); 
+        
+        const canvases = document.querySelectorAll(".chart-canvas");
+        
+        canvases.forEach(element => {
+            const chart = Chart.getChart(element);
+            if (chart) {
+                
+                chart.data.datasets[0].data = data.data; 
+                chart.data.labels = data.labels;
+                chart.update();
+            }
+        });
+    });
+
+    document.getElementById('save-board').addEventListener('click', () => {
+        savedDashboards.setItem('dashboard',JSON.stringify(dashboard));
+    });
+    
+    document.getElementById('load-board').addEventListener('click', () => {
+        
+        dashboard.data = JSON.parse(savedDashboards.getItem('dashboard')).data;
+        dashboard.widgets = JSON.parse(savedDashboards.getItem('dashboard')).widgets;
+        dashboard.loadBoard();
+    });
+}
+
+
 
