@@ -1,16 +1,18 @@
 import { Chart } from "chart.js";
 import { Dashboard } from "./core/Dashboard";
-import { Modal } from "./ui/Modal";
+import { DashboardModal } from "./ui/DashboardModal";
+import { DataModal } from "./ui/DataModal";
 
 
 
 let dashboard = new Dashboard();
 let data = null;
 const savedDashboards = localStorage;
+const dataSources = [];
 
 export function init() {
     document.getElementById('create-board').addEventListener('click',() => {
-        const modal = new Modal(dashboard);
+        const modal = new DashboardModal(dashboard);
         console.log(modal);
     });
 
@@ -32,6 +34,11 @@ export function init() {
                 chart.update();
             }
         });
+    });
+
+    document.getElementById('data-sources').addEventListener('click', () => {
+        const modal = new DataModal(dataSources);
+        console.log(modal);
     });
 
     document.getElementById('save-board').addEventListener('click', () => {

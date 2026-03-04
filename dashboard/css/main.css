@@ -85,6 +85,7 @@ header {
     
 }
 
+
 .settings-buttons {
     position: relative;
     display: flex;
@@ -105,4 +106,33 @@ header {
 }
 .settings-btn {
     overflow: hidden;
+}
+
+.data-container {
+    display: block;
+    position: relative;
+    background-color: #fff;
+    
+    width: 400px;
+    height: 400px;
+    border: solid black 3px;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.close-btn { 
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease; /* Плавность анимации */
+}
+
+.close-btn:hover {
+    transform: scale(1.2); /* Увеличение на 20% */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }

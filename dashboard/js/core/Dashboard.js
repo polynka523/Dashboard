@@ -10,7 +10,7 @@ export class Dashboard {
         this.widgets = widgets;
         this.widgets.forEach(element => {
            const newChart = new ChartWidget(`${element}`);
-               newChart.createChart([/*'Янв', 'Фев', 'Мар'*/], [/*10, 20, 15*/],'Какие-то данные');
+               newChart.createChart([], [],'Какие-то данные');
                document.getElementById('cnt').appendChild(newChart.container); 
         });
     }
