@@ -1,9 +1,12 @@
+import { ChartModal } from "../ui/ChartModal";
 import { ChartWidget } from "../widgets/ChartWidget";
 
 export class Dashboard {
     data;
     widgets;
+    dataSources;
     constructor() {
+        
         
     }
     initBoard(widgets) {
@@ -25,6 +28,14 @@ export class Dashboard {
            const newChart = new ChartWidget(`${element}`);
                newChart.createChart(this.data.labels, this.data.data,'Какие-то данные');
                document.getElementById('cnt').appendChild(newChart.container); 
+        });
+    }
+    setupEventListener() {
+        document.getElementById('cnt').addEventListener('dblclick',(event) =>{
+            if(document.querySelectorAll('.modal-overlay').length === 0){
+            console.log(this.dataSources)
+            const chartModal = new ChartModal(event.target, this.dataSources);
+            }
         });
     }
     

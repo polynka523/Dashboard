@@ -5,10 +5,11 @@ import { DataModal } from "./ui/DataModal";
 
 
 
-let dashboard = new Dashboard();
+
 let data = null;
 const savedDashboards = localStorage;
 const dataSources = [];
+let dashboard = new Dashboard();
 
 export function init() {
     document.getElementById('create-board').addEventListener('click',() => {
@@ -37,7 +38,8 @@ export function init() {
     });
 
     document.getElementById('data-sources').addEventListener('click', () => {
-        const modal = new DataModal(dataSources);
+        const modal = new DataModal(dataSources,dashboard);
+        
         console.log(modal);
     });
 
@@ -50,6 +52,7 @@ export function init() {
         dashboard.data = JSON.parse(savedDashboards.getItem('dashboard')).data;
         dashboard.widgets = JSON.parse(savedDashboards.getItem('dashboard')).widgets;
         dashboard.loadBoard();
+        console.log(dataSources)
     });
 }
 

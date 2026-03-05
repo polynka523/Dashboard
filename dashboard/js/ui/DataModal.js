@@ -6,9 +6,11 @@ export class DataModal extends Modal {
     addBtn;
     sourceList;
     closeBtn;
-    constructor(dataSources) {
+    dashboard;
+    constructor(dataSources,dashboard) {
         super();
         this.dataSources = dataSources;
+        this.dashboard = dashboard;
         this.modalContainer.innerHTML = `
         <div class="data-container">
             <button id = "close-button-data" class = "close-btn">
@@ -40,6 +42,9 @@ export class DataModal extends Modal {
             }
             else {
                 this.dataSources.push(this.urlInput.value);
+                this.dashboard.dataSources = this.dataSources;
+                this.dashboard.setupEventListener();
+                console.log(this.dashboard.dataSources);
                 this.urlInput.value = '';
                 alert('Успешно доабвлено!');
                 this.renderOl();

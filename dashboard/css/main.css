@@ -136,3 +136,26 @@ header {
     transform: scale(1.2); /* Увеличение на 20% */
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
+
+.chart-settings {
+    display: block;
+    /* flex-direction: column; */
+    position: relative;
+    background-color: #fff;
+    
+    width: 400px;
+    height: 400px;
+    border: solid black 3px;
+    border-radius: 15px;
+}
+
+.source-slct {
+    margin: 10px;
+}
+
+.submit-btn {
+    position: absolute;
+    z-index: 10;
+    bottom: 10px;
+    right: 10px;
+}
