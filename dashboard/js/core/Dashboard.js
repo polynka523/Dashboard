@@ -1,3 +1,4 @@
+import { GridStack } from "gridstack";
 import { ChartModal } from "../ui/ChartModal";
 import { ChartWidget } from "../widgets/ChartWidget";
 
@@ -5,17 +6,25 @@ export class Dashboard {
     data;
     widgets;
     dataSources;
+    grid;
     constructor() {
-        
+        // this.grid = GridStack.init();
         
     }
     initBoard(widgets) {
         this.widgets = widgets;
         this.widgets.forEach(element => {
-           const newChart = new ChartWidget(`${element}`);
-               newChart.createChart([], [],'Какие-то данные');
-               document.getElementById('cnt').appendChild(newChart.container); 
+            // const newChart = new ChartWidget(`${element}`);
+            element.createChart([], [],'Какие-то данные', widgets);
+            console.log(element.container)
+            // const widget = this.grid.addWidget({
+            //     x: 0, y: 0, w: 4, h: 3
+            // }).appendChild(element.container);
+
         });
+
+        
+        
     }
 
     loadBoard() {
@@ -25,9 +34,10 @@ export class Dashboard {
                 element.remove();
         });
         this.widgets.forEach(element => {
-           const newChart = new ChartWidget(`${element}`);
-               newChart.createChart(this.data.labels, this.data.data,'Какие-то данные');
-               document.getElementById('cnt').appendChild(newChart.container); 
+            
+            element.createChart(this.data.labels, this.data.data,'Какие-то данные',this.widgets);
+            
+            
         });
     }
     setupEventListener() {
@@ -36,7 +46,10 @@ export class Dashboard {
             console.log(this.dataSources)
             const chartModal = new ChartModal(event.target, this.dataSources);
             }
+            
+
         });
+        
     }
     
 }

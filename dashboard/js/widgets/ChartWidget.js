@@ -17,8 +17,9 @@ export class ChartWidget extends Widget {
     }
 
 
-    createChart(labels, data, label = 'Значения') {
-        new Chart(this.canvas, {
+    createChart(labels, data, label = 'Значения', widgets) {
+        
+       new Chart(this.canvas, {
         type: this.type,
         data: {
             labels: labels,
@@ -35,7 +36,9 @@ export class ChartWidget extends Widget {
             maintainAspectRatio: false
         }
     });
-        
+    console.log(this);
+    document.getElementById('cnt').appendChild(this.container);
+    this.setupEventListeners(widgets); 
     }
 
     

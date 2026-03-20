@@ -1,3 +1,4 @@
+import { ChartWidget } from "../widgets/ChartWidget";
 import { Modal } from "./Modal";
 export class DashboardModal extends Modal {
     
@@ -59,21 +60,21 @@ export class DashboardModal extends Modal {
             bar.innerHTML = 'Bar';
             bar.className = 'element';
             document.querySelector('#settings-cnt').appendChild(bar);
-            this.widgetsQueue.push('bar');
+            this.widgetsQueue.push(new ChartWidget('bar'));
         });
         this.linearBtn.addEventListener('click',()=>{
             const line = document.createElement('div');
             line.innerHTML = 'Line';
             line.className = 'element';
             document.querySelector('#settings-cnt').appendChild(line);
-            this.widgetsQueue.push('line');
+            this.widgetsQueue.push(new ChartWidget('line'));
         });
         this.pieBtn.addEventListener('click',()=>{
             const pie = document.createElement('div');
             pie.innerHTML = 'Pie';
             pie.className = 'element';
             document.querySelector('#settings-cnt').appendChild(pie);
-            this.widgetsQueue.push('pie');
+            this.widgetsQueue.push(new ChartWidget('pie'));
         });
         this.generateBtn.addEventListener('click',() =>{
             const charts = document.querySelectorAll('.chart-container');
