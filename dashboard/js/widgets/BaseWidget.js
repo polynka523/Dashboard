@@ -1,8 +1,12 @@
 export class Widget {
+    
+    
     container;
     deleteBtn;
     minimBtn;
     constructor(){
+        
+        
         this.container = document.createElement('div');
         this.deleteBtn = document.createElement('button');
         
@@ -23,14 +27,16 @@ export class Widget {
         
         this.container.appendChild(this.deleteBtn);
         this.container.appendChild(this.minimBtn);
+       
     }
 
-    setupEventListeners(widgets) {
+    setupEventListeners(widgets,grid) {
         
         this.deleteBtn.addEventListener('click', () => {
-            this.container.remove();
+            grid.removeWidget(this.container);
             widgets.pop(this);
             console.log(widgets);
+            
         });
 
         

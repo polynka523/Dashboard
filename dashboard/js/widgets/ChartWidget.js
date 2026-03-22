@@ -9,7 +9,7 @@ export class ChartWidget extends Widget {
         super();
         this.canvas = document.createElement('canvas');
         this.canvas.classList.add('chart-canvas');
-        this.canvas.style.maxHeight = '400px';
+        this.canvas.style.maxHeight = '100%';
         this.container.appendChild(this.canvas);
         this.container.classList.add('chart-container');
         this.type = type;
@@ -17,7 +17,7 @@ export class ChartWidget extends Widget {
     }
 
 
-    createChart(labels, data, label = 'Значения', widgets) {
+    createChart(labels, data, label = 'Значения', widgets, grid) {
         
        new Chart(this.canvas, {
         type: this.type,
@@ -37,8 +37,8 @@ export class ChartWidget extends Widget {
         }
     });
     console.log(this);
-    document.getElementById('cnt').appendChild(this.container);
-    this.setupEventListeners(widgets); 
+    // document.getElementById('cnt').appendChild(this.container);
+    this.setupEventListeners(widgets, grid); 
     }
 
     

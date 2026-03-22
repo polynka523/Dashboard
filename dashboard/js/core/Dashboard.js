@@ -1,6 +1,7 @@
 import { GridStack } from "gridstack";
+
 import { ChartModal } from "../ui/ChartModal";
-import { ChartWidget } from "../widgets/ChartWidget";
+
 
 export class Dashboard {
     data;
@@ -8,18 +9,24 @@ export class Dashboard {
     dataSources;
     grid;
     constructor() {
-        // this.grid = GridStack.init();
-        
+        this.grid = GridStack.init({ 
+            column: 3,        
+            cellHeight: 400,  
+            margin: 10,        
+
+            
+            float: false
+        });
+                    
     }
     initBoard(widgets) {
         this.widgets = widgets;
         this.widgets.forEach(element => {
             // const newChart = new ChartWidget(`${element}`);
-            element.createChart([], [],'Какие-то данные', widgets);
+            element.createChart([], [],'Какие-то данные', widgets,this.grid);
             console.log(element.container)
-            // const widget = this.grid.addWidget({
-            //     x: 0, y: 0, w: 4, h: 3
-            // }).appendChild(element.container);
+            
+            this.grid.makeWidget(element.container);
 
         });
 
@@ -28,14 +35,9 @@ export class Dashboard {
     }
 
     loadBoard() {
-        const charts = document.querySelectorAll('.chart-container');
-            charts.forEach(element =>{
-                
-                element.remove();
-        });
         this.widgets.forEach(element => {
             
-            element.createChart(this.data.labels, this.data.data,'Какие-то данные',this.widgets);
+            element.createChart(this.data.labels, this.data.data,'Какие-то данные',this.widgets,this.grid);
             
             
         });
