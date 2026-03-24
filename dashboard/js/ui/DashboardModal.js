@@ -77,11 +77,12 @@ export class DashboardModal extends Modal {
             this.widgetsQueue.push(new ChartWidget('pie'));
         });
         this.generateBtn.addEventListener('click',() =>{
-            const charts = document.querySelectorAll('.chart-container');
-            charts.forEach(element =>{
+            // const charts = document.querySelectorAll('.chart-container');
+            // charts.forEach(element =>{
                 
-                element.remove();
-            });
+            //     element.remove();
+            // });
+            
             console.log(...this.widgetsQueue);
             this.dashboard.initBoard(this.widgetsQueue);
                         

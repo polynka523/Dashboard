@@ -10,8 +10,9 @@ export class Dashboard {
     grid;
     constructor() {
         this.grid = GridStack.init({ 
-            column: 3,        
-            cellHeight: 400,  
+            column: 5,        
+            cellHeight: 100,  
+            
             margin: 10,        
 
             
@@ -21,6 +22,7 @@ export class Dashboard {
     }
     initBoard(widgets) {
         this.widgets = widgets;
+        this.grid.removeAll();
         this.widgets.forEach(element => {
             // const newChart = new ChartWidget(`${element}`);
             element.createChart([], [],'Какие-то данные', widgets,this.grid);
@@ -35,6 +37,7 @@ export class Dashboard {
     }
 
     loadBoard() {
+        this.grid.removeAll();
         this.widgets.forEach(element => {
             
             element.createChart(this.data.labels, this.data.data,'Какие-то данные',this.widgets,this.grid);

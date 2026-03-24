@@ -1,7 +1,14 @@
 @import 'gridstack/dist/gridstack.min.css';
 
-*{
-    margin: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -11,7 +18,9 @@ header {
 
 .main-frame {
     display: flex;
+    flex-direction: column;
     position: relative;
+    margin: 0;
 }
 
 .nav-btn {
@@ -38,17 +47,44 @@ header {
     flex-direction: column;
     width: 10%;
     background:linear-gradient(43deg, rgb(255, 237, 237), rgb(75, 192, 192));
-    height: 700px;
-    border-radius: 15px;
+    height: 100vh;
+    margin: 0;
     padding: 20px;
-    margin-left: 5px;
-    box-shadow: 16px 21px 5px -5px rgba(34, 60, 80, 0.6);
+    margin-left: 0px;
+    border-right: #1e5e46 2px solid;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+    background-color:  rgb(75, 192, 192);
+    border-bottom: #1e5e46 2px solid;
+    height: 6vh;
+}
+
+.account-button {
+    border: none;
+    text-decoration: none;
+    background: none;
+    
 }
 
 .grid-stack {
+    
     flex: 1;
     padding: 20px;
-    overflow: hidden;
+    overflow-y: visible;
+    
 }
 
 
@@ -90,6 +126,7 @@ header {
 }
 .Logo-text {
     font-size: 20px;
+    color: #fff;
 }
 
 .modal-overlay {
@@ -136,6 +173,7 @@ header {
     bottom: 10px;
     right: 10px;
 }
+
 .settings-btn {
     overflow: hidden;
 }
