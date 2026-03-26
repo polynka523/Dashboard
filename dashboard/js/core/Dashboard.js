@@ -46,7 +46,7 @@ export class Dashboard {
         });
     }
     setupEventListener() {
-        document.getElementById('cnt').addEventListener('dblclick',(event) =>{
+        document.querySelector('.grid-stack').addEventListener('dblclick',(event) =>{
             if(document.querySelectorAll('.modal-overlay').length === 0){
             console.log(this.dataSources)
             const chartModal = new ChartModal(event.target, this.dataSources);

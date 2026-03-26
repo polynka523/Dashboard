@@ -5,27 +5,27 @@ export class DataModal extends Modal {
     urlInput;
     addBtn;
     sourceList;
-    closeBtn;
+    dataContainer;
     dashboard;
     constructor(dataSources,dashboard) {
         super();
         this.dataSources = dataSources;
         this.dashboard = dashboard;
-        this.modalContainer.innerHTML = `
-        <div class="data-container">
-            <button id = "close-button-data" class = "close-btn">
-                    <span class="material-symbols-outlined">
-                    close
-                    </span>
-            </button>
+        console.log(dashboard);
+        this.dataContainer = document.createElement('div');
+        this.dataContainer.className = 'data-container';
+        this.dataContainer.innerHTML = `
+        
+            
             <h1>Источники данных</h1>
             <input id = "source-input" type="text" placeholder="type url here">
             <button id="add-source">Добавить источник</button>
             <ol id = "sources-ol" class = "sources-list">
 
             </ol>
-        </div>
+       
         `;
+        this.modalFrame.appendChild(this.dataContainer);
         document.getElementById('app').appendChild(this.modalContainer);
         this.sourceList = document.getElementById('sources-ol');
         this.addBtn = document.getElementById('add-source');
@@ -53,11 +53,11 @@ export class DataModal extends Modal {
             // console.log(this.urlInput.value.trim());
             // this.renderOl();
         });
-        this.closeBtn.addEventListener('click',() =>{
+        // this.closeBtn.addEventListener('click',() =>{
             
-            document.querySelector('.modal-overlay').remove();
+        //     document.querySelector('.modal-overlay').remove();
             
-        });
+        // });
 
 
     }

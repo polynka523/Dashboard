@@ -54,6 +54,10 @@ export function init() {
         dashboard.loadBoard();
         console.log(dataSources)
     });
+
+    document.getElementById('addCrt').addEventListener('click', () => {
+        
+    });
 }
 
 

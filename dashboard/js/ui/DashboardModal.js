@@ -2,28 +2,26 @@ import { ChartWidget } from "../widgets/ChartWidget";
 import { Modal } from "./Modal";
 export class DashboardModal extends Modal {
     
-    closeBtn;
+    
     linearBtn;
     pieBtn;
     barBtn;
     generateBtn;
     widgetsQueue;
     dashboard;
-
+    modalContent;
     constructor(dashboard) {
         super();
         this.widgetsQueue = [];
         
+        this.modalContent = document.createElement('div');
+        this.modalContent.className = 'modalWrapper';
         
-        this.modalContainer.innerHTML = `
+        this.modalFrame.insertAdjacentHTML('beforeend', `
             
-            <div class="modal-container">
+            
                 
-                    <button id = "close-button" class = "close-btn">
-                        <span class="material-symbols-outlined">
-                        close
-                        </span>
-                    </button>
+                    
                     <aside class="settings-buttons">
                         <button class="settings-btn" id = "linear-add">Линейный график</button>
                         <button class="settings-btn" id = "pie-add">Пай</button>
@@ -35,10 +33,11 @@ export class DashboardModal extends Modal {
                     
                 </div>
                 <button class="generate-btn" id="generate">Создать доску</button>
-            </div>
-        `;
+            
+        `);
+        this.modalFrame.appendChild(this.modalContent);
         document.getElementById('app').appendChild(this.modalContainer);
-        this.closeBtn = document.getElementById('close-button');
+        
         console.log(this.closeBtn)
         this.barBtn = document.getElementById('bar-add');
         this.pieBtn = document.getElementById('pie-add');
@@ -49,11 +48,7 @@ export class DashboardModal extends Modal {
     }
 
     setupEventListeners() {
-        this.closeBtn.addEventListener('click',() =>{
-            
-            document.querySelector('.modal-overlay').remove();
-            
-        });
+        
 
         this.barBtn.addEventListener('click',()=>{
             const bar = document.createElement('div');
